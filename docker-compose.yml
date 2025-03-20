@@ -4,8 +4,8 @@ services:
     image: nginx:latest
     container_name: nginx
     ports:
-      - 80:80
-      - 443:443
+      - ${NGINX_PORT:-80}:80
+      - ${NGINX_HTTPS_PORT:-443}:443
     volumes:
       - ./nginx/conf.d:/etc/nginx/conf.d
       - ./certs:/etc/nginx/certs
@@ -17,7 +17,7 @@ services:
     image: ghcr.io/toeverything/affine-graphql:${AFFINE_REVISION:-stable}
     container_name: affine_server
     ports:
-      - '${PORT:-3010}:3010'
+      - '3010:3010'
     depends_on:
       redis:
         condition: service_healthy
