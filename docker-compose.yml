@@ -34,6 +34,11 @@ services:
     environment:
       - REDIS_SERVER_HOST=redis
       - DATABASE_URL=postgresql://${DB_USERNAME}:${DB_PASSWORD}@postgres:5432/${DB_DATABASE:-affine}
+      - MAILER_HOST=${MAILER_HOST:-smtp.gmail.com}
+      - MAILER_PORT=${MAILER_PORT:-465}
+      - MAILER_USER=${MAILER_USER}
+      - MAILER_PASSWORD=${MAILER_PASSWORD}
+      - MAILER_SENDER=${MAILER_SENDER}
     restart: unless-stopped
 
   affine_migration:
